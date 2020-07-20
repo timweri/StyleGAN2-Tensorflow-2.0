@@ -13,8 +13,8 @@ from tensorflow.keras.initializers import *
 import tensorflow as tf
 import tensorflow.keras.backend as K
 
-from datagen import dataGenerator, printProgressBar
-from conv_mod import *
+from stylegan.datagen import dataGenerator, printProgressBar
+from stylegan.conv_mod import *
 
 im_size = 256
 latent_size = 512
