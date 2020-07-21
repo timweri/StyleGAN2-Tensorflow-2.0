@@ -47,8 +47,9 @@ class dataGenerator(object):
             print("Importing images...")
             print("Maximum Segment Size: ", self.segment_length)
 
+        print(self.folder)
         try:
-            os.mkdir("data/" + self.folder + "-npy-" + str(self.im_size))
+            os.mkdir(self.folder + "-npy-" + str(self.im_size))
         except:
             self.load_from_npy(folder)
             return
@@ -63,7 +64,7 @@ class dataGenerator(object):
 
         names = []
 
-        for dirpath, dirnames, filenames in os.walk("data/" + folder):
+        for dirpath, dirnames, filenames in os.walk("stylegan/data/" + folder):
             for filename in [f for f in filenames if (f.endswith(".jpg") or f.endswith(".png") or f.endswith(".JPEG"))]:
                 fname = os.path.join(dirpath, filename)
                 names.append(fname)
@@ -105,7 +106,7 @@ class dataGenerator(object):
 
     def load_from_npy(self, folder):
 
-        for dirpath, dirnames, filenames in os.walk("data/" + folder + "-npy-" + str(self.im_size)):
+        for dirpath, dirnames, filenames in os.walk(folder + "-npy-" + str(self.im_size)):
             for filename in [f for f in filenames if f.endswith(".npy")]:
                 self.segments.append(os.path.join(dirpath, filename))
 

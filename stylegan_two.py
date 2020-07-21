@@ -19,7 +19,7 @@ from stylegan.conv_mod import *
 im_size = 256
 latent_size = 512
 BATCH_SIZE = 16
-directory = "Earth"
+directory = "stylegan/data/nature"
 
 cha = 24
 
@@ -583,19 +583,19 @@ class StyleGAN(object):
 
     def saveModel(self, model, name, num):
         json = model.to_json()
-        with open("Models/"+name+".json", "w") as json_file:
+        with open("stylegan/Models/"+name+".json", "w") as json_file:
             json_file.write(json)
 
-        model.save_weights("Models/"+name+"_"+str(num)+".h5")
+        model.save_weights("stylegan/Models/"+name+"_"+str(num)+".h5")
 
     def loadModel(self, name, num):
 
-        file = open("Models/"+name+".json", 'r')
+        file = open("stylegan/Models/"+name+".json", 'r')
         json = file.read()
         file.close()
 
         mod = model_from_json(json, custom_objects = {'Conv2DMod': Conv2DMod})
-        mod.load_weights("Models/"+name+"_"+str(num)+".h5")
+        mod.load_weights("stylegan/Models/"+name+"_"+str(num)+".h5")
 
         return mod
 
